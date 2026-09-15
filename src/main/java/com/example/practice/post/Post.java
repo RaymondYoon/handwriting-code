@@ -15,7 +15,7 @@ public class Post {
     public Long id;
     public String title;
     public String content;
-    public String auther;
+    public String author;
     public LocalDateTime createdAt;
     public LocalDateTime updatedAt;
 }
