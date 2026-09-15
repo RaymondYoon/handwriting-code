@@ -24,6 +24,7 @@ public class PostController {
     }
 
     @GetMapping
+    @RequestMapping("/{id}")
     public Post findById(@PathVariable Long id){
         return postService.findById(id);
     }
