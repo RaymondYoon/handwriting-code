@@ -23,8 +23,20 @@ public class PostService {
     public List<Post> findAll(){
         return postRepository.findAll();
     }
+
     public Post findById(Long id){
         return postRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("게시물을 찾을 수 없습니다."));
+    }
+
+    @Transactional
+    public Post update(Long id, String title, String content, String author){
+        Post post = findById(id);
+
+            post.title = title;
+            post.content = content;
+            post.author = author;
+
+        return post;
     }
 }
