@@ -1,5 +1,8 @@
 package com.example.practice.post;
 
+import com.example.practice.post.dto.PostCreateRequestDto;
+import com.example.practice.post.dto.PostResponseDto;
+import com.example.practice.post.dto.PostUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,29 +17,29 @@ public class PostController {
     }
 
     @PostMapping
-    public Post createpost(@RequestBody Post post){
-        return postService.createPost(post);
+    public PostResponseDto createPost(@RequestBody PostCreateRequestDto requestDto) {
+        return postService.createPost(requestDto);
     }
 
     @GetMapping
-    public List<Post> findAll(){
+    public List<PostResponseDto> findAll() {
         return postService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Post findById(@PathVariable Long id){
+    public PostResponseDto findById(@PathVariable Long id) {
         return postService.findById(id);
     }
 
     @PutMapping("/{id}")
-    public Post updatePost(
+    public PostResponseDto updatePost(
             @PathVariable Long id,
-            @RequestBody Post post){
-        return postService.update(
-                id,
-                post.title,
-                post.content,
-                post.author
-        );
+            @RequestBody PostUpdateRequestDto requestDto) {
+        return postService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        postService.delete(id);
     }
 }
