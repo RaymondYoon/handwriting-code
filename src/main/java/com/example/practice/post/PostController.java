@@ -3,6 +3,7 @@ package com.example.practice.post;
 import com.example.practice.post.dto.PostCreateRequestDto;
 import com.example.practice.post.dto.PostResponseDto;
 import com.example.practice.post.dto.PostUpdateRequestDto;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class PostController {
     }
 
     @PostMapping
-    public PostResponseDto createPost(@RequestBody PostCreateRequestDto requestDto) {
+    public PostResponseDto createPost(@Valid @RequestBody PostCreateRequestDto requestDto) {
         return postService.createPost(requestDto);
     }
 
@@ -34,7 +35,7 @@ public class PostController {
     @PutMapping("/{id}")
     public PostResponseDto updatePost(
             @PathVariable Long id,
-            @RequestBody PostUpdateRequestDto requestDto) {
+            @Valid @RequestBody PostUpdateRequestDto requestDto) {
         return postService.update(id, requestDto);
     }
 

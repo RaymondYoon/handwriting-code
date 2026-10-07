@@ -1,8 +1,17 @@
 package com.example.practice.post.dto;
 
-public record PostCreateRequestDto (
-    String title,
-    String content,
-    String author
-){}
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
+public record PostCreateRequestDto(
+        @NotBlank(message = "제목은 필수입니다.")
+        @Size(max = 100, message = "제목은 100자 이하입니다.")
+        String title,
+
+        @NotBlank(message = "내용은 필수입니다.")
+        String content,
+
+        @NotBlank(message = "작성자는 필수입니다.")
+        String author
+) {
+}
